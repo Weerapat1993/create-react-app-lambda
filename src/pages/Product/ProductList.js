@@ -1,12 +1,16 @@
 import React from 'react';
+import { List } from 'antd';
 import Product from './Product'
 
 const ProductList = ({ products }) => (
-  <ul>
-    {products.map(product => (
-      <Product key={product.id} {...product} />
-    ))}
-  </ul>
+  <List
+    header={<b>Product List</b>}
+    bordered
+    dataSource={products}
+    renderItem={item => (
+      <Product {...item} />
+    )}
+  />
 )
 
 export default ProductList;

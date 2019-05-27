@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Mutation } from 'react-apollo';
 import { ADD_PRODUCT } from '../../graphql/product/gql';
-import { Button } from '../../components';
+import { Input } from 'antd';
+
+const { Search } = Input
 
 class AddProduct extends PureComponent {
   state = {
@@ -19,8 +21,13 @@ class AddProduct extends PureComponent {
         <Mutation mutation={ADD_PRODUCT} variables={{ text }}>
           {addProduct => (
             <div>
-              <input onChange={this.handleInput} />
-              <Button color="primary" onClick={addProduct}>Add</Button>
+              <Search
+                placeholder="input text"
+                enterButton="Add"
+                onChange={this.handleInput}
+                onSearch={addProduct}
+                allowClear
+              />
             </div>
           )}
         </Mutation>

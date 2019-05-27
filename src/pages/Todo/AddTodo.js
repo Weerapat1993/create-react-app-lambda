@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
 import { Mutation } from 'react-apollo';
 import { ADD_TODO } from '../../graphql/todo/gql';
-import { Button } from '../../components';
+import { Input } from 'antd';
+
+const { Search } = Input
 
 class AddTodo extends PureComponent {
   state = {
@@ -16,10 +18,15 @@ class AddTodo extends PureComponent {
     const { text } = this.state;
     return (
       <Mutation mutation={ADD_TODO} variables={{ text }}>
-        {addProduct => (
+        {addTodo => (
           <div>
-            <input onChange={this.handleInput} />
-            <Button color="warning" onClick={addProduct}>Add</Button>
+            <Search
+              placeholder="input text"
+              enterButton="Add"
+              onChange={this.handleInput}
+              onSearch={addTodo}
+              allowClear
+            />
           </div>
         )}
       </Mutation>
