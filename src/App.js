@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import ApolloClient from "apollo-boost";
 import { gql } from "apollo-boost";
 import { ApolloProvider, Query } from "react-apollo";
+import { get } from 'lodash';
 import logo from "./logo.svg"
 import "./App.css"
 
@@ -49,6 +50,25 @@ const LambdaDemo = () => (
     >
       {({ data }) =>
         <div>A greeting from the server: {data.hello}</div>}
+    </Query>
+    <Query
+      query={gql`
+        {
+          posts {
+            id
+            title
+            votes
+          }
+        }
+      `}
+    >
+      {({ data }) => (
+        <ul>
+          {get(data, 'posts', []).map((item, key) => (
+            <li key={key}>{item.title}</li>
+          ))}
+        </ul>
+      )}
     </Query>
   </ApolloProvider>
 );
