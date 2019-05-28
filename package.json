@@ -10,6 +10,7 @@
     "apollo-link-http": "^1.5.14",
     "apollo-link-state": "^0.4.2",
     "apollo-server-lambda": "^2.5.0",
+    "axios": "^0.18.0",
     "babel-plugin-import": "^1.11.2",
     "bufferutil": "^4.0.1",
     "customize-cra": "^0.2.12",

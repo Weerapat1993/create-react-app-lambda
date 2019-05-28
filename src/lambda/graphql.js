@@ -1,5 +1,6 @@
 import { ApolloServer, gql } from "apollo-server-lambda";
-import { find, filter } from 'lodash';
+import { find } from 'lodash';
+import { fetchGithubRepoQuery } from "../graphql/github";
 
 const authors = [
   { id: 1, firstName: 'Tom', lastName: 'Coleman' },
@@ -29,10 +30,17 @@ const typeDefs = gql`
     votes: Int
   }
 
+  type Github {
+    id: Int!
+    name: String
+    full_name: String
+  }
+
   type Query {
     hello: String
     posts: [Post]
     author(id: Int!): Author
+    github(name: String!): [Github]
   }
 `;
 
@@ -43,6 +51,7 @@ const resolvers = {
     },
     posts: () => posts,
     author: (_, { id }) => find(authors, { id }),
+    github: fetchGithubRepoQuery,
   }
 };
 
