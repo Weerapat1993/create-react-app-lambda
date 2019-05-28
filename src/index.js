@@ -7,7 +7,8 @@ import { withClientState } from 'apollo-link-state';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ThemeProvider } from 'styled-components';
-import { Home } from './pages';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { App } from './components';
 import { theme } from './config/theme';
 import { inititalState } from './graphql/store';
 import { Mutation } from './graphql/Mutation'
@@ -27,18 +28,20 @@ const client = new ApolloClient({
   link: ApolloLink.from([stateLink, httpLink])
 });
 
-const App = () => (
+const Index = () => (
   <ApolloProvider client={client}>
     <ThemeProvider theme={theme}>
       <Fragment>
         <GlobalStyle />
-        <Home />
+        <Router>
+          <Route path='/' component={App} />
+        </Router>
       </Fragment>
     </ThemeProvider>
   </ApolloProvider>
 )
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Index />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
