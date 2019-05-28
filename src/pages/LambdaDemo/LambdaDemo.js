@@ -19,8 +19,9 @@ class LambdaDemo extends PureComponent {
             }
           `}
         >
-          {({ data }) =>
-            <div>A greeting from the server: {data.hello}</div>}
+          {({ data }) => (
+            <div>A greeting from the server: {get(data, 'hello', '')}</div>
+          )}
         </Query>
         <Query
           query={gql`
