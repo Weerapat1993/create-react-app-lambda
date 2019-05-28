@@ -1,32 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
-import { connect } from '../../utils/connect';
+import { graphql } from 'react-apollo'
+import { Card } from '../../components'
 import { LambdaDemo, ProductList, AddProduct } from '../../features';
+import { QUERY_STORE } from '../../graphql/store';
 
-const WhiteCard = styled.div`
-  padding: 24px;
-  min-height: 280px;
-  width: 100%;
-  background: white;
-`
- 
 const Home = (props) => {
   const { products } = props
   return (
-    <WhiteCard>
-      <h1>Product List</h1>
-      <LambdaDemo />
-      <AddProduct />
-      <br />
-      <br />
-      <ProductList products={products} />
-    </WhiteCard>
+    <Card>
+      <Card.Body>
+        <h1>Product List</h1>
+        <LambdaDemo />
+        <AddProduct />
+        <br />
+        <br />
+        <ProductList products={products} />
+      </Card.Body>
+    </Card>
   )
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = ({ data: state, ownProps }) => ({
   todos: state.todos,
   products: state.products,
 })
 
-export default connect(mapStateToProps)(Home);
+export default graphql(QUERY_STORE, {
+  props: mapStateToProps,
+})(Home);

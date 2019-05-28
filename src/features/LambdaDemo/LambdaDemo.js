@@ -1,7 +1,6 @@
 import React, { PureComponent } from "react"
-import { graphql } from "react-apollo";
 import { get } from 'lodash';
-import { GET_POSTS } from "../../graphql/post/gql";
+import { withGetPostsQuery } from "../../graphql/post";
 // import { modalError } from '../../components'
 
 class LambdaDemo extends PureComponent {
@@ -17,4 +16,4 @@ class LambdaDemo extends PureComponent {
   }
 }
 
-export default graphql(GET_POSTS)(LambdaDemo);
+export default withGetPostsQuery()(LambdaDemo);

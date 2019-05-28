@@ -1,8 +1,8 @@
 import React from 'react';
-import { graphql, compose } from 'react-apollo';
+import { compose } from 'react-apollo';
 import { List } from 'antd';
 import styled from 'styled-components'
-import { TOGGLE_PRODUCT, DELETE_PRODUCT } from '../../graphql/product/gql';
+import { withToggleProductMutation, withDeleteProductMutation } from '../../graphql/product'
 
 const Text = styled.span`
   color: ${props => props.color || '#333'};
@@ -18,25 +18,21 @@ const Product = ({ id, completed, text, toggleProduct, deleteProduct }) => (
   </List.Item>
 );
 
-const withToggleProductMutation = graphql(TOGGLE_PRODUCT, {
-  name: 'toggleProduct',
-  options: (props) => ({
-    variables: {
-      id: props.id,
-    } 
-  }),
-});
-
-const withDeleteProductMutation = graphql(DELETE_PRODUCT, {
-  name: 'deleteProduct',
-  options: (props) => ({
-    variables: {
-      id: props.id,
-    } 
-  }),
-})
-
 export default compose(
-  withToggleProductMutation,
-  withDeleteProductMutation,
+  withToggleProductMutation({
+    name: 'toggleProduct',
+    options: (props) => ({
+      variables: {
+        id: props.id,
+      } 
+    }),
+  }),
+  withDeleteProductMutation({
+    name: 'deleteProduct',
+    options: (props) => ({
+      variables: {
+        id: props.id,
+      } 
+    }),
+  }),
 )(Product);

@@ -17,6 +17,7 @@ const App = () => (
       <Breadcrumb style={{ margin: '16px 10px' }}>
         <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
         <Breadcrumb.Item><Link to="/about">About</Link></Breadcrumb.Item>
+        <Breadcrumb.Item><Link to="/github">Github</Link></Breadcrumb.Item>
       </Breadcrumb>
       <Routes />
     </CustomContent>

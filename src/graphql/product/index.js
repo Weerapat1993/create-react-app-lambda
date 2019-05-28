@@ -1,3 +1,1 @@
-import * as productResolvers from './resolvers';
-
-export { productResolvers };
+export * from './hoc';

@@ -1,7 +1,12 @@
 import React from 'react';
+import { Card } from '../../components'
 
 const About = () => (
-  <div>About Page</div>
+  <Card>
+    <Card.Body>
+      <h1>About Page</h1>
+    </Card.Body>
+  </Card>
 )
 
 export default About;

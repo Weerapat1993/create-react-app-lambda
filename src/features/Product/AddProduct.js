@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
-import { graphql } from 'react-apollo';
-import { ADD_PRODUCT } from '../../graphql/product/gql';
+import { withAddProductMutation } from '../../graphql/product';
 import { Input } from 'antd';
 
 const { Search } = Input
@@ -27,4 +26,4 @@ class AddProduct extends PureComponent {
   }
 }
 
-export default graphql(ADD_PRODUCT, { name: 'addProduct' })(AddProduct);
+export default withAddProductMutation({ name: 'addProduct' })(AddProduct);
