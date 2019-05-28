@@ -6,6 +6,12 @@ export const GET_GITHUB_REPO = gql`
       id
       name
       full_name
+      description
+      html_url
+      owner {
+        avatar_url
+      }
+      language
     }
   }
 `

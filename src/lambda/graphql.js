@@ -34,6 +34,14 @@ const typeDefs = gql`
     id: Int!
     name: String
     full_name: String
+    description: String
+    html_url: String
+    owner: Owner
+    language: String
+  }
+
+  type Owner {
+    avatar_url: String
   }
 
   type Query {

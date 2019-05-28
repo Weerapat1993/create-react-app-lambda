@@ -1,31 +1,30 @@
-import React, { PureComponent } from 'react';
-import { List } from 'antd'
-import { get } from 'lodash'
-import { withGetGithubRepoQuery } from '../../graphql/github'
+import React, { PureComponent, Fragment } from 'react';
+import GithubList from './GithubList'
+import { Input } from 'antd';
+
+const { Search } = Input
 
 class GithubContainer extends PureComponent {
+  state = {
+    name: '',
+  }
   render() {
-    const { data } = this.props
-    const products = get(data, 'github', []);
+    const { name } = this.state
     return (
-      <List
-        header={<b>Product List</b>}
-        bordered
-        dataSource={products}
-        renderItem={item => (
-          <List.Item>
-            {item.name}
-          </List.Item>
-        )}
-      />
+      <Fragment>
+        <Search
+          placeholder="Github Name"
+          enterButton="Search"
+          onSearch={(value) => {
+            this.setState({ name: value })
+          }}
+          allowClear
+        />
+        <br/><br/>
+        <GithubList name={name} />
+      </Fragment>
     )
   }
 }
 
-export default withGetGithubRepoQuery({ 
-  options: (props) => ({
-    variables: {
-      name: 'Weerapat1993'
-    },
-  }) 
-})(GithubContainer);
+export default GithubContainer

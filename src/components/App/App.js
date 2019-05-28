@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Routes from '../../routes'
 
-const { Content, Footer } = Layout;
+const { Content } = Layout;
 const CustomContent = styled(Content)`
   margin: auto;
   max-width: 996px;
-  overflow-y: auto;
 `
 
 const App = () => (
-  <Layout style={{ height: '100vh' }}>
+  <Layout style={{ background: 'white' }}>
     <CustomContent>
       <Breadcrumb style={{ margin: '16px 10px' }}>
         <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
@@ -21,7 +20,6 @@ const App = () => (
       </Breadcrumb>
       <Routes />
     </CustomContent>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
   </Layout>
   
 );
