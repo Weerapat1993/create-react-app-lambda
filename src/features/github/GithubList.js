@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { List, Avatar, Icon } from 'antd'
+import { List, Avatar, Icon, Modal } from 'antd'
 import { get } from 'lodash'
 import { withGetGithubRepoQuery } from '../../graphql/github'
 import { modalError } from '../../components'
@@ -45,6 +45,20 @@ class GithubList extends PureComponent {
     }
   }
 
+  handleClickItem = (url) => {
+    const title = 'Do you Want to open github profile?'
+    Modal.confirm({
+      title,
+      content: url,
+      onOk() {
+        window.open(url)
+      },
+      onCancel() {
+        
+      },
+    });
+  }
+
   render() {
     const { data, name } = this.props
     const products = get(data, 'github', []);
@@ -54,10 +68,16 @@ class GithubList extends PureComponent {
         bordered
         dataSource={products}
         renderItem={item => (
-          <List.Item>
+          <List.Item
+            actions={[
+              <IconText key='star' type="star" text={item.stargazers_count} color='#ffcf02' />, 
+              <IconText key='eye' type="eye" text={item.watchers_count} />, 
+              <IconText key='message' type="message" text={item.open_issues} />
+            ]}
+          >
             <List.Item.Meta
               avatar={<Avatar src={get(item, 'owner.avatar_url', '')} />}
-              title={<a onClick={() => console.log(item.html_url)} target='_blank'>{item.name}</a>}
+              title={<span onClick={() => this.handleClickItem(item.html_url)}>{item.name}</span>}
               description={item.description}
             />
             <div>

@@ -12,6 +12,9 @@ export const GET_GITHUB_REPO = gql`
         avatar_url
       }
       language
+      stargazers_count
+      watchers_count
+      open_issues
     }
   }
 `

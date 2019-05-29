@@ -38,6 +38,9 @@ const typeDefs = gql`
     html_url: String
     owner: Owner
     language: String
+    stargazers_count: Int
+    watchers_count: Int
+    open_issues: Int
   }
 
   type Owner {
