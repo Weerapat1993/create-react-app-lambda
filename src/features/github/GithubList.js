@@ -62,10 +62,12 @@ class GithubList extends PureComponent {
   render() {
     const { data, name } = this.props
     const products = get(data, 'github', []);
+    const loading = get(data, 'loading', false);
     return (
       <List
         header={<b>Username : {name}</b>}
         bordered
+        loading={loading}
         dataSource={products}
         renderItem={item => (
           <List.Item

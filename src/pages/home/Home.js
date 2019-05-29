@@ -1,8 +1,7 @@
 import React from 'react';
-import { graphql } from 'react-apollo'
 import { Card } from '../../components'
 import { LambdaDemo, ProductList, AddProduct } from '../../features';
-import { QUERY_STORE } from '../../graphql/store';
+import { withLocalState } from '../../graphql/store';
 
 const Home = (props) => {
   const { products } = props
@@ -25,6 +24,6 @@ const mapStateToProps = ({ data: state, ownProps }) => ({
   products: state.products,
 })
 
-export default graphql(QUERY_STORE, {
+export default withLocalState({
   props: mapStateToProps,
 })(Home);
