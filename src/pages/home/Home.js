@@ -9,7 +9,7 @@ const Home = (props) => {
     <Card>
       <Card.Body>
         <h1>Product List</h1>
-        <LambdaDemo name="Weerapat1993" />
+        <LambdaDemo />
         <AddProduct />
         <br />
         <br />
