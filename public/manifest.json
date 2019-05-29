@@ -1,15 +1,17 @@
 {
-  "short_name": "Top Developer",
+  "short_name": "Kunai Developer",
   "name": "Top Developer Website",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "./assets/images/icons/favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     }
   ],
-  "start_url": "./index.html",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#29434d",
+  "background_color": "#ffffff",
+  "related_applications": true,
+  "prefer_related_applications": true
 }
