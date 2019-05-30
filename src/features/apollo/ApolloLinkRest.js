@@ -15,6 +15,8 @@ class ApolloLinkRest extends PureComponent {
     const { path } = this.state;
     return (
       <Fragment>
+        <div><b>RESTful API : </b>https://swapi.co/api/</div>
+        <div><b>Example : </b>people/1</div>
         <SearchQuery onSearch={this.handleSearch} />
         <PeopleQuery path={path} />
       </Fragment>

@@ -20,7 +20,6 @@ class PeopleQuery extends PureComponent {
       <Fragment>
         <b>Search Result : {path}</b>
         <br />
-        <div>Example : people/1</div>
         {loading ? (
           <div>Loading...</div>
         ) : (
@@ -42,6 +41,6 @@ export default withGetPeopleQuery({
       path: props.path
     }
   }),
-  fetchPolicy: "no-cache",
+  fetchPolicy: "cache-and-network",
   partialRefetch: false,
 })(PeopleQuery);
