@@ -8,6 +8,7 @@ import { withClientState } from 'apollo-link-state';
 import { onError } from "apollo-link-error";
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import { RestLink } from 'apollo-link-rest';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { App } from './components';
@@ -25,6 +26,7 @@ const stateLink = withClientState({
 });
 
 const httpLink = new HttpLink({ uri: "/.netlify/functions/graphql" })
+const restLink = new RestLink({ uri: "https://swapi.co/api/" });
 // const retryLink = new RetryLink()
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors)
@@ -40,6 +42,7 @@ const client = new ApolloClient({
   link: ApolloLink.from([
     stateLink, 
     // retryLink, //ยิง API ซ้ำๆ 5 รอบ 
+    restLink, // REST API
     errorLink, // Log Error Message
     httpLink,
   ])

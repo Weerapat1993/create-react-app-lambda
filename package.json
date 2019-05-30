@@ -9,6 +9,7 @@
     "apollo-link": "^1.2.11",
     "apollo-link-error": "^1.1.10",
     "apollo-link-http": "^1.5.14",
+    "apollo-link-rest": "^0.7.3",
     "apollo-link-retry": "^2.2.13",
     "apollo-link-state": "^0.4.2",
     "apollo-server-lambda": "^2.5.0",

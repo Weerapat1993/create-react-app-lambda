@@ -8,6 +8,7 @@ const Routes = () => (
     <Route exact path="/" component={Page.Home} />
     <Route path="/about" component={Page.About} />
     <Route path="/github" component={Page.Github} />
+    <Route path="/apollo-link-rest" component={Page.Apollo.LinkRest} />
     <Route path='*' component={ErrorPage} />
   </Switch>
 )

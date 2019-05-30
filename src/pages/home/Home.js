@@ -1,15 +1,17 @@
 import React from 'react';
 import { Card } from '../../components'
-import { LambdaDemo, ProductList, AddProduct } from '../../features';
+import { ProductList, AddProduct } from '../../features';
 import { withLocalState } from '../../graphql/store';
+import GraphQLTutorial from './GraphQLTutorial';
 
 const Home = (props) => {
   const { products } = props
   return (
     <Card>
       <Card.Body>
+        <h1>GraphQL Tutorial</h1>
+        <GraphQLTutorial /> 
         <h1>Product List</h1>
-        <LambdaDemo />
         <AddProduct />
         <br />
         <br />
