@@ -43,7 +43,8 @@
     "build:app": "react-app-rewired build",
     "build:lambda": "netlify-lambda build src/lambda",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "doc": "rm -rf docs && graphdoc -e http://localhost:9000/graphql -o ./docs/schema && open ./docs/schema/index.html"
   },
   "eslintConfig": {
     "extends": "react-app"
