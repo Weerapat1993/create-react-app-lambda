@@ -10,7 +10,7 @@ const Routes = () => (
     <Route path="/github" component={Page.Github} />
     <Route path="/apollo-link-rest" component={Page.Apollo.LinkRest} />
     <Route path="/apollo-link-state" component={Page.Apollo.LinkState} />
-    <Route path="/playground" component={Page.Playground} />
+    <Route exact path="/playground" component={Page.Playground} />
     <Route path="/products" component={Page.Products} />
     <Route path='*' component={ErrorPage} />
   </Switch>
