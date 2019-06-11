@@ -55,10 +55,8 @@ class App extends PureComponent {
       },
     ];
     const currentMenu = menus.filter(item => item.to === pathname)
-    console.log(this.props)
     const defaultMenu = get(currentMenu, '0.key', 1).toString();
     const isFooter = !noFooters.some(value => value === pathname)
-    console.log(defaultMenu)
     return (
       <Layout style={{ height: '100vh' }}>
         <Sider

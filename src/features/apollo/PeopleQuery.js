@@ -15,7 +15,6 @@ class PeopleQuery extends PureComponent {
     const { data, path } = this.props;
     const person = get(data, 'person')
     const loading = get(data, 'loading', false)
-    console.log(this.props)
     return (
       <Fragment>
         <b>Search Result : {path}</b>

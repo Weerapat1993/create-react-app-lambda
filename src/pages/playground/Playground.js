@@ -11,7 +11,7 @@ const Playground = () => (
   <PlaygroundView>
     <iframe
       title="GraphQL Playground"
-      src="/.netlify/functions/graphql"
+      src={process.env.REACT_APP_GRAPHQL_PLAYGROUND_URL}
       width="100%"
       height="743px"
       frameBorder={0}
