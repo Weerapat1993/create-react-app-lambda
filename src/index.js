@@ -17,6 +17,7 @@ import { inititalState } from './graphql/store';
 import { resolvers } from './graphql/resolvers'
 import * as serviceWorker from './serviceWorker';
 import { GlobalStyle } from './styles/GlobalStyle';
+require('dotenv').config()
 
 const cache = new InMemoryCache();
 const stateLink = withClientState({
@@ -25,7 +26,7 @@ const stateLink = withClientState({
   defaults: inititalState,
 });
 
-const httpLink = new HttpLink({ uri: "/.netlify/functions/graphql" })
+const httpLink = new HttpLink({ uri: process.env.REACT_APP_GRAPHQL_PLAYGROUND_URL })
 const restLink = new RestLink({ uri: "https://swapi.co/api/" });
 // const retryLink = new RetryLink()
 const errorLink = onError(({ graphQLErrors, networkError }) => {
