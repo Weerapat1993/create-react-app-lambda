@@ -19,8 +19,8 @@ const CloseView = styled.div`
   position: absolute;
   text-align: right;
   width: 200px;
-  right: 15px;
-  top: 15px;
+  right: 45px;
+  top: 13px;
 `;
 
 class Playground extends PureComponent {

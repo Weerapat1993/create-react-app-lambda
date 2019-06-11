@@ -3,6 +3,12 @@ import { Table } from 'antd';
 
 const columns = [
   {
+    title: 'ID',
+    dataIndex: '_id',
+    defaultSortOrder: 'descend',
+    sorter: (a, b) => a.age - b.age,
+  },
+  {
     title: 'Name',
     dataIndex: 'name',
     filters: [
