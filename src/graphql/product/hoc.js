@@ -1,5 +1,5 @@
 import { graphql } from 'react-apollo';
-import { GET_PRODUCT, ADD_PRODUCT, TOGGLE_PRODUCT, DELETE_PRODUCT } from './gql'
+import { GET_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './gql'
 // eslint-disable-next-line no-unused-vars
 import { ConfigMutation, ConfigQuery } from '../../docs/graphqlConfig'
 
@@ -19,7 +19,7 @@ export const withAddProductMutation = (config = {}) => graphql(ADD_PRODUCT, conf
  * @param {ConfigMutation} config
  * @return {Function}
  */
-export const withToggleProductMutation = (config = {}) => graphql(TOGGLE_PRODUCT, config)
+export const withUpdateProductMutation = (config = {}) => graphql(UPDATE_PRODUCT, config)
 
 /**
  * @param {ConfigMutation} config

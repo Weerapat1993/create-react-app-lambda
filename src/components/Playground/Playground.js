@@ -19,7 +19,7 @@ const CloseView = styled.div`
   position: absolute;
   text-align: right;
   width: 200px;
-  right: 45px;
+  right: 50px;
   top: 13px;
 `;
 

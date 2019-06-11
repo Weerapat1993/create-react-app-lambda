@@ -11,19 +11,29 @@ export const GET_PRODUCT = gql`
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation AddProduct($text: String!) {
-    addProduct(text: $text) @client
+  mutation AddProduct($input: AddProduct) {
+    addProduct(input: $input) {
+      _id
+      name
+      price
+    }
   }
 `;
 
-export const TOGGLE_PRODUCT = gql`
-  mutation ToggleProduct($id: String!) {
-    toggleProduct(id: $id) @client
+export const UPDATE_PRODUCT = gql`
+  mutation UpdateProduct($input: UpdateProduct) {
+    updateProduct(input: $input) {
+      _id
+      name
+      price
+    }
   }
 `;
 
 export const DELETE_PRODUCT = gql`
-  mutation DeleteProduct($id: String!) {
-    deleteProduct(id: $id) @client
+  mutation DeleteProduct($input: DeleteProduct) {
+    deleteProduct(input: $input) {
+      code
+    }
   }
 `;

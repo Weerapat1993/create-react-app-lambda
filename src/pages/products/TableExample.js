@@ -7,6 +7,7 @@ const columns = [
     dataIndex: '_id',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.age - b.age,
+    width: 120,
   },
   {
     title: 'Name',
@@ -46,11 +47,12 @@ const columns = [
     dataIndex: 'price',
     defaultSortOrder: 'descend',
     sorter: (a, b) => a.age - b.age,
+    width: 100,
   },
 ];
 
 const TableExample = ({ data, loading }) => (
-  <Table columns={columns} dataSource={data.map(item => ({ ...item, key: item._id }))} loading={loading} />
+  <Table columns={columns} dataSource={data} loading={loading} scroll={{ x: 600 }} />
 )
 
 export default TableExample;
