@@ -1,5 +1,10 @@
-import React from 'react';
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import React, { Fragment } from 'react';
+import { Table, Input, Button, InputNumber, Popconfirm, Form } from 'antd';
+import styled from 'styled-components';
+
+const TextLink = styled.a`
+  margin-right: 8px;
+`;
 
 const EditableContext = React.createContext();
 
@@ -12,83 +17,56 @@ const EditableRow = ({ form, index, ...props }) => (
 const EditableFormRow = Form.create()(EditableRow);
 
 class EditableCell extends React.Component {
-  state = {
-    editing: false,
+  getInput = () => {
+    if (this.props.inputType === 'number') {
+      return <InputNumber />;
+    }
+    return <Input />;
   };
 
-  toggleEdit = () => {
-    const editing = !this.state.editing;
-    this.setState({ editing }, () => {
-      if (editing) {
-        this.input.focus();
-      }
-    });
-  };
-
-  save = e => {
-    const { record, handleSave } = this.props;
-    this.form.validateFields((error, values) => {
-      if (error && error[e.currentTarget.id]) {
-        return;
-      }
-      this.toggleEdit();
-      handleSave({ ...record, ...values });
-    });
-  };
-
-  renderCell = form => {
-    this.form = form;
-    const { children, dataIndex, record, title } = this.props;
-    const { editing } = this.state;
-    return editing ? (
-      <Form.Item style={{ margin: 0 }}>
-        {form.getFieldDecorator(dataIndex, {
-          rules: [
-            {
-              required: true,
-              message: `${title} is required.`,
-            },
-          ],
-          initialValue: record[dataIndex],
-        })(<Input ref={node => (this.input = node)} onPressEnter={this.save} onBlur={this.save} />)}
-      </Form.Item>
-    ) : (
-      <div
-        className="editable-cell-value-wrap"
-        style={{ paddingRight: 24 }}
-        onClick={this.toggleEdit}
-      >
-        {children}
-      </div>
-    );
-  };
-
-  render() {
+  renderCell = ({ getFieldDecorator }) => {
     const {
-      editable,
+      editing,
       dataIndex,
       title,
+      inputType,
       record,
       index,
-      handleSave,
       children,
       ...restProps
     } = this.props;
     return (
       <td {...restProps}>
-        {editable ? (
-          <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>
+        {editing ? (
+          <Form.Item style={{ margin: 0 }}>
+            {getFieldDecorator(dataIndex, {
+              rules: [
+                {
+                  required: true,
+                  message: `Please Input ${title}!`,
+                },
+              ],
+              initialValue: record[dataIndex],
+            })(this.getInput())}
+          </Form.Item>
         ) : (
           children
         )}
       </td>
     );
+  };
+
+  render() {
+    return <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>;
   }
 }
 
 class EditableTable extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      editingKey: ''
+    }
     this.columns = [
       {
         title: 'ID',
@@ -107,22 +85,53 @@ class EditableTable extends React.Component {
         dataIndex: 'price',
         defaultSortOrder: 'descend',
         sorter: (a, b) => a.price - b.price,
-        width: 100,
+        width: 150,
         editable: true,
       },
       {
         title: 'Actions',
         dataIndex: 'actions',
-        width: 100,
-        render: (text, record) =>
-          this.props.data.length >= 1 ? (
-            <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
-              <a href="javascript:;">Delete</a>
-            </Popconfirm>
-          ) : null,
+        width: 160,
+        render: (text, record) => {
+          const { editingKey } = this.state;
+          const editable = this.isEditing(record);
+          return editable ? (
+            <span>
+              <EditableContext.Consumer>
+                {form => (
+                  <TextLink onClick={() => this.save(form, record.key)}>
+                    Save
+                  </TextLink>
+                )}
+              </EditableContext.Consumer>
+              <Popconfirm title="Sure to cancel?" onConfirm={() => this.cancel(record.key)}>
+                <TextLink>Cancel</TextLink>
+              </Popconfirm>
+            </span>
+          ) : (
+            <Fragment>
+              <TextLink disabled={editingKey !== ''} onClick={() => this.edit(record.key)} style={{ marginRight: 8 }}>
+                Edit
+              </TextLink>
+              <Popconfirm title="Sure to delete?" onConfirm={() => this.handleDelete(record.key)}>
+                <TextLink>Delete</TextLink>
+              </Popconfirm>
+            </Fragment>
+          );
+        }
       },
     ];
   }
+
+  isEditing = record => record.key === this.state.editingKey;
+
+  edit(key) {
+    this.setState({ editingKey: key });
+  }
+
+  cancel = () => {
+    this.setState({ editingKey: '' });
+  };
 
   handleDelete = key => {
     this.props.onDelete(key)
@@ -134,6 +143,22 @@ class EditableTable extends React.Component {
       price: 29900
     })
   };
+
+  save = (form, key) => {
+    form.validateFields((error, row) => {
+      if (error) {
+        return;
+      }
+      const products = [...this.props.data];
+      const rowField = products.find(item => key === item.key);
+      const newData = {
+        ...rowField,
+        ...row,
+      }
+      this.props.onUpdate(newData)
+      this.setState({ editingKey: '' });
+    });
+  }
 
   handleSave = row => {
     this.props.onUpdate(row)
@@ -155,10 +180,12 @@ class EditableTable extends React.Component {
         ...col,
         onCell: record => ({
           record,
+          inputType: col.dataIndex === 'price' ? 'number' : 'text',
           editable: col.editable,
           dataIndex: col.dataIndex,
           title: col.title,
-          handleSave: this.handleSave,
+          // handleSave: this.handleSave,
+          editing: this.isEditing(record),
         }),
       };
     });
@@ -174,6 +201,7 @@ class EditableTable extends React.Component {
           loading={loading}
           columns={columns}
           scroll={{ x: 600 }}
+          pagination={{ pageSize: 10 }}
         />
       </div>
     );
