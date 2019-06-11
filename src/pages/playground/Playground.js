@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
+require('dotenv').config()
 
 const PlaygroundView = styled.div`
   margin: 0 -16px;
