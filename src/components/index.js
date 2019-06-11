@@ -5,4 +5,5 @@ export { Image } from './Image'
 export { Container } from './Container'
 export { modalError } from './ModalError'
 export { ErrorPage } from './ErrorPage';
-export { Card } from './Card'; 
+export { Card } from './Card';
+export { Playground } from './Playground'

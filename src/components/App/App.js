@@ -4,6 +4,7 @@ import { get } from 'lodash'
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 import Routes from '../../routes'
+import { Playground } from '../Playground';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -14,12 +15,26 @@ const Logo = styled.div`
 `;
 
 class App extends PureComponent {
+  state = {
+    isPlayground: false,
+    isMobile: false,
+  }
+
   handleLink = (path) => {
     this.props.history.push(path)
   }
 
+  handlePlayground = (bool) => {
+    this.setState({ isPlayground: bool })
+  }
+
+  handleBreakpoint = (bool) => {
+    this.setState({ isMobile: bool })
+  }
+
   render() {
     const { location } = this.props;
+    const { isPlayground, isMobile} = this.state;
     const { pathname } = location
     const noFooters = ['/playground']
     const menus = [
@@ -28,12 +43,6 @@ class App extends PureComponent {
         title: 'Home',
         icon: 'home',
         to: '/'
-      },
-      {
-        key: 2,
-        title: 'GraphQL Playground',
-        icon: 'radar-chart',
-        to: '/playground'
       },
       {
         key: 3,
@@ -63,7 +72,7 @@ class App extends PureComponent {
           breakpoint="lg"
           collapsedWidth="0"
           onBreakpoint={broken => {
-            console.log(broken);
+            this.handleBreakpoint(broken)
           }}
           onCollapse={(collapsed, type) => {
             
@@ -87,6 +96,7 @@ class App extends PureComponent {
           {isFooter ? (
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
           ) : null}
+          <Playground visible={isPlayground} isMobile={isMobile} onClose={this.handlePlayground} />
         </Layout>
       </Layout>
     );
