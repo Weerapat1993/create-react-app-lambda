@@ -121,7 +121,7 @@ class ProductList extends PureComponent {
 }
 
 export default compose(
-  withGetProductQuery(),
+  withGetProductQuery({ notifyOnNetworkStatusChange: true }),
   withAddProductMutation({ name: 'addProduct', options: { refetchQueries: ['GetProducts'] } }),
   withUpdateProductMutation({ name: 'updateProduct', options: { refetchQueries: ['GetProducts'] } }),
   withDeleteProductMutation({ name: 'deleteProduct', options: { refetchQueries: ['GetProducts'] } }),

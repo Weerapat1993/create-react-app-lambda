@@ -8,11 +8,6 @@ export const QUERY_STORE = gql`
       completed
       text
     }
-    products @client {
-      id
-      completed
-      text
-    }
   }
 `;
 
@@ -21,5 +16,4 @@ export const withLocalState = (config = {}) => graphql(QUERY_STORE, config);
 // Initial State
 export const inititalState = {
   todos: [],
-  products: [],
 }

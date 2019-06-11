@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Routes from '../../routes'
 import { Playground } from '../Playground';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 const Logo = styled.div`
   background: rgba(255, 255, 255, 0.2);
@@ -36,7 +36,7 @@ class App extends PureComponent {
     const { location } = this.props;
     const { isPlayground, isMobile} = this.state;
     const { pathname } = location
-    const noFooters = ['/playground']
+    // const noFooters = ['/playground']
     const menus = [
       {
         key: 1,
@@ -65,7 +65,7 @@ class App extends PureComponent {
     ];
     const currentMenu = menus.filter(item => item.to === pathname)
     const defaultMenu = get(currentMenu, '0.key', 1).toString();
-    const isFooter = !noFooters.some(value => value === pathname)
+    // const isFooter = !noFooters.some(value => value === pathname)
     return (
       <Layout style={{ height: '100vh' }}>
         <Sider
@@ -93,9 +93,6 @@ class App extends PureComponent {
           <Content style={{ margin: '24px 16px 0' }}>
             <Routes />
           </Content>
-          {isFooter ? (
-            <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-          ) : null}
           <Playground visible={isPlayground} isMobile={isMobile} onClose={this.handlePlayground} />
         </Layout>
       </Layout>
