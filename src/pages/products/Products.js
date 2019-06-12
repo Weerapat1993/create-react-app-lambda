@@ -24,14 +24,6 @@ const Align = styled.div`
 `;
 
 class ProductList extends PureComponent {
-  componentDidMount() {
-    const { data } = this.props
-    const products = get(data, 'products', [])
-    if(!products.length) {
-      this.props.data.refetch()
-    }
-  }
-
   handleAdd = (input) => {
     const { addProduct } = this.props;
     addProduct({
