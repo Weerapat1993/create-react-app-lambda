@@ -3,6 +3,7 @@ import About from './about';
 import Github from './github';
 import Apollo from './apollo';
 import Products from './products'
+import Categories from './categories'
 
 export default { 
   Home,
@@ -10,4 +11,5 @@ export default {
   Github,
   Apollo,
   Products,
+  Categories,
 }

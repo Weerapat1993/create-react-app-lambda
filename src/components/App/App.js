@@ -52,12 +52,18 @@ class App extends PureComponent {
       },
       {
         key: 4,
+        title: 'Categories',
+        icon: 'database',
+        to: '/categories'
+      },
+      {
+        key: 5,
         title: 'About',
         icon: 'user',
         to: '/about'
       },
       {
-        key: 5,
+        key: 6,
         title: 'Github',
         icon: 'github',
         to: '/github'
