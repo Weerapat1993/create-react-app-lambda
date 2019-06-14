@@ -39,7 +39,6 @@ class ProductList extends PureComponent {
 
   handleUpdate = (row) => {
     const { updateProduct } = this.props;
-    console.log(row)
     const input = omit(row, ['key', '__typename', '_id'])
     updateProduct({
       variables: {
