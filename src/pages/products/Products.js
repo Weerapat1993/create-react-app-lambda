@@ -43,7 +43,7 @@ class ProductList extends PureComponent {
     updateProduct({
       variables: {
         input: {
-          id: row._id,
+          _id: row._id,
           ...input,
           price: parseInt(input.price),
         }
