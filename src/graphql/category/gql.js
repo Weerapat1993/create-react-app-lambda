@@ -5,6 +5,7 @@ export const GET_CATEGORY = gql`
     categories {
       _id
       name
+      productIds
       products {
         _id
         name
@@ -19,6 +20,7 @@ export const ADD_CATEGORY = gql`
     addCategory(input: $input) {
       _id
       name
+      productIds
       products {
         _id
         name
@@ -33,11 +35,7 @@ export const UPDATE_CATEGORY = gql`
     updateCategory(input: $input) {
       _id
       name
-      products {
-        _id
-        name
-        price
-      }
+      productIds
     }
   }
 `;

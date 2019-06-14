@@ -1,5 +1,8 @@
 import React from 'react';
-import { Input, InputNumber, Form } from 'antd';
+import { Input, InputNumber, Form, Select } from 'antd';
+import { get } from 'lodash'
+
+const { Option } = Select;
 
 export const EditableContext = React.createContext();
 
@@ -13,8 +16,18 @@ export const EditableFormRow = Form.create()(EditableRow);
 
 export class EditableCell extends React.Component {
   getInput = () => {
+    const lists = get(this.props, 'lists', [])
     if (this.props.inputType === 'number') {
       return <InputNumber />;
+    }
+    if (this.props.inputType === 'select-multiple') {
+      return (
+        <Select mode="multiple" style={{ width: '100%' }}>
+          {lists.map(item => (
+            <Option key={item.value}>{item.title}</Option>
+          ))}
+        </Select>
+      );
     }
     return <Input />;
   };

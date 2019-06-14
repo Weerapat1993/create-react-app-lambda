@@ -105,6 +105,7 @@ class EditableTable extends React.Component {
         ...col,
         onCell: record => ({
           record,
+          lists: this.props.lists,
           inputType: col.inputType || 'text',
           editable: col.editable,
           dataIndex: col.dataIndex,
