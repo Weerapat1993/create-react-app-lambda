@@ -4,6 +4,7 @@ import Github from './github';
 import Apollo from './apollo';
 import Products from './products'
 import Categories from './categories'
+import Users from './users'
 import Example from '../features/schemaTable';
 
 export default { 
@@ -13,5 +14,6 @@ export default {
   Apollo,
   Products,
   Categories,
+  Users,
   Example,
 }

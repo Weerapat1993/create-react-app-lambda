@@ -39,34 +39,9 @@ class App extends PureComponent {
     // const noFooters = ['/playground']
     const menus = [
       {
-        key: 1,
-        title: 'Home',
-        icon: 'home',
-        to: '/'
-      },
-      {
-        key: 3,
-        title: 'Products',
-        icon: 'database',
-        to: '/products'
-      },
-      {
-        key: 4,
-        title: 'Categories',
-        icon: 'database',
-        to: '/categories'
-      },
-      {
-        key: 5,
         title: 'About',
         icon: 'user',
         to: '/about'
-      },
-      {
-        key: 6,
-        title: 'Github',
-        icon: 'github',
-        to: '/github'
       },
     ];
     const currentMenu = menus.filter(item => item.to === pathname)
@@ -86,6 +61,23 @@ class App extends PureComponent {
         >
           <Logo />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={[defaultMenu]}>
+            <Menu.Item key="home" onClick={() => this.handleLink('/')}>
+              <Icon type="home" />
+              <span className="nav-text">Home</span>
+            </Menu.Item>
+            <Menu.SubMenu
+              key="database"
+              title={
+                <span>
+                  <Icon type="database" />
+                  <span>Database</span>
+                </span>
+              }
+            >
+              <Menu.Item onClick={() => this.handleLink('/categories')} key="database-1">Categories</Menu.Item>
+              <Menu.Item onClick={() => this.handleLink('/products')} key="database-2">Products</Menu.Item>
+              <Menu.Item onClick={() => this.handleLink('/users')} key="database-3">Users</Menu.Item>
+            </Menu.SubMenu>
             {menus.map(item => (
               <Menu.Item key={item.key} onClick={() => this.handleLink(item.to)}>
                 <Icon type={item.icon} />

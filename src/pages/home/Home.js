@@ -13,6 +13,7 @@ const Home = (props) => {
         </ul>
         <h1>Apollo Server</h1>
         <ul>
+          <li><Link to='/products'>Categories</Link></li>
           <li><Link to='/products'>Product</Link></li>
         </ul>
       </Card.Body>

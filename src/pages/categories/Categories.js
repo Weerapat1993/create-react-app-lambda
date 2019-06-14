@@ -22,6 +22,7 @@ const CategoryList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
       {
         title: 'Name',
         dataIndex: 'name',
+        inputType: 'text',
         editable: true,
       },
     ]}

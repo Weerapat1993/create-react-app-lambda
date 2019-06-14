@@ -11,8 +11,9 @@ const Routes = () => (
     <Route path="/apollo-link-rest" component={Page.Apollo.LinkRest} />
     <Route path="/apollo-link-state" component={Page.Apollo.LinkState} />
     <Route path="/products" component={Page.Products} />
-    <Route path="/products-example" component={Page.Example} />
+    <Route path="/users" component={Page.Users} />
     <Route path="/categories" component={Page.Categories} />
+    <Route path="/products-example" component={Page.Example} />
     <Route path='*' component={ErrorPage} />
   </Switch>
 )

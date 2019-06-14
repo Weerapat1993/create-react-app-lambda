@@ -1,22 +1,22 @@
 import React from 'react'
 import { Table } from 'antd'
-import { withSchema } from './SchemaHOC';
+import { withSchema } from '../../features/schemaTable';
 import {
-  withGetProductQuery, 
-  withDeleteProductMutation,
-  withAddProductMutation, 
-  withUpdateProductMutation,
-} from '../../graphql/product'
-import EditTable from './EditTable'
+  withGetUserQuery,
+  withAddUserMutation,
+  withUpdateUserMutation,
+  withDeleteUserMutation,
+} from '../../graphql/user'
+import EditTable from '../../features/schemaTable/EditTable'
 
-const ProductList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
+const UserList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
   <EditTable
     columns={[
       {
         title: 'ID',
         dataIndex: '_id',
         defaultSortOrder: 'descend',
-        sorter: (a, b) => a.age - b.age,
+        sorter: (a, b) => a._id - b._id,
         width: 120,
       },
       {
@@ -26,18 +26,15 @@ const ProductList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
         editable: true,
       },
       {
-        title: 'Price',
-        dataIndex: 'price',
-        inputType: 'number',
-        defaultSortOrder: 'descend',
-        sorter: (a, b) => a.price - b.price,
-        width: 150,
+        title: 'Email',
+        dataIndex: 'email',
+        inputType: 'text',
         editable: true,
       },
     ]}
     defaultAddValues={{
-      name: 'Iphone XR',
-      price: 29900
+      name: 'Name',
+      email: 'email@example.com'
     }}
     data={dataList} 
     loading={loading}
@@ -62,17 +59,17 @@ const ProductList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
 );
 
 export default withSchema(
-  'products',
+  'users',
   [
-    withGetProductQuery({
+    withGetUserQuery({
       options: () => ({
         notifyOnNetworkStatusChange: true,
         fetchPolicy: 'cache-and-network',
       })
     }),
-    withAddProductMutation({ name: 'addSchema', options: { refetchQueries: ['GetProducts'] } }),
-    withUpdateProductMutation({ name: 'updateSchema', options: { refetchQueries: ['GetProducts'] } }),
-    withDeleteProductMutation({ name: 'deleteSchema', options: { refetchQueries: ['GetProducts'] } }),
+    withAddUserMutation({ name: 'addSchema', options: { refetchQueries: ['GetUsers'] } }),
+    withUpdateUserMutation({ name: 'updateSchema', options: { refetchQueries: ['GetUsers'] } }),
+    withDeleteUserMutation({ name: 'deleteSchema', options: { refetchQueries: ['GetUsers'] } }),
   ],
-  ProductList
+  UserList
 )
