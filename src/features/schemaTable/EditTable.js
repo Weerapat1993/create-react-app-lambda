@@ -1,65 +1,11 @@
 import React, { Fragment } from 'react';
-import { Table, Input, Button, InputNumber, Popconfirm, Form } from 'antd';
+import { Button, Popconfirm } from 'antd';
 import styled from 'styled-components';
+import { EditableCell, EditableContext, EditableFormRow } from './Editable'
 
 const TextLink = styled.a`
   margin-right: 8px;
 `;
-
-const EditableContext = React.createContext();
-
-const EditableRow = ({ form, index, ...props }) => (
-  <EditableContext.Provider value={form}>
-    <tr {...props} />
-  </EditableContext.Provider>
-);
-
-const EditableFormRow = Form.create()(EditableRow);
-
-class EditableCell extends React.Component {
-  getInput = () => {
-    if (this.props.inputType === 'number') {
-      return <InputNumber />;
-    }
-    return <Input />;
-  };
-
-  renderCell = ({ getFieldDecorator }) => {
-    const {
-      editing,
-      dataIndex,
-      title,
-      inputType,
-      record,
-      index,
-      children,
-      ...restProps
-    } = this.props;
-    return (
-      <td {...restProps}>
-        {editing ? (
-          <Form.Item style={{ margin: 0 }}>
-            {getFieldDecorator(dataIndex, {
-              rules: [
-                {
-                  required: true,
-                  message: `Please Input ${title}!`,
-                },
-              ],
-              initialValue: record[dataIndex],
-            })(this.getInput())}
-          </Form.Item>
-        ) : (
-          children
-        )}
-      </td>
-    );
-  };
-
-  render() {
-    return <EditableContext.Consumer>{this.renderCell}</EditableContext.Consumer>;
-  }
-}
 
 class EditableTable extends React.Component {
   constructor(props) {
@@ -68,18 +14,7 @@ class EditableTable extends React.Component {
       editingKey: ''
     }
     this.columns = [
-      {
-        title: 'ID',
-        dataIndex: '_id',
-        defaultSortOrder: 'descend',
-        sorter: (a, b) => a.age - b.age,
-        width: 120,
-      },
-      {
-        title: 'Name',
-        dataIndex: 'name',
-        editable: true,
-      },
+      ...props.columns,
       {
         title: 'Actions',
         dataIndex: 'actions',
@@ -112,7 +47,7 @@ class EditableTable extends React.Component {
           );
         }
       },
-    ];
+    ]
   }
 
   isEditing = record => record.key === this.state.editingKey;
@@ -130,10 +65,8 @@ class EditableTable extends React.Component {
   };
 
   handleAdd = (input) => {
-    this.props.onAdd({
-      name: 'Iphone XR',
-      price: 29900
-    })
+    const { defaultAddValues } = this.props
+    this.props.onAdd(defaultAddValues)
   };
 
   save = (form, key) => {
@@ -157,7 +90,7 @@ class EditableTable extends React.Component {
   };
 
   render() {
-    const { data, loading } = this.props
+    // const { data, loading } = this.props
     const components = {
       body: {
         row: EditableFormRow,
@@ -184,17 +117,9 @@ class EditableTable extends React.Component {
     return (
       <div>
         <Button onClick={this.handleAdd} type="primary" icon="plus" style={{ marginBottom: 16 }}>
-          Add Category
+          Add
         </Button>
-        <Table
-          components={components}
-          rowClassName={() => 'editable-row'}
-          dataSource={data}
-          loading={loading}
-          columns={columns}
-          scroll={{ x: 600 }}
-          pagination={{ pageSize: 10 }}
-        />
+        {this.props.children(components, columns)}
       </div>
     );
   }

@@ -1,22 +1,22 @@
 import React from 'react'
 import { Table } from 'antd'
-import { withSchema } from '../../features/schemaTable';
+import { withSchema } from './SchemaHOC';
 import {
-  withGetCategoryQuery, 
-  withAddCategoryMutation,
-  withUpdateCategoryMutation,
-  withDeleteCategoryMutation,
-} from '../../graphql/category'
-import EditTable from '../../features/schemaTable/EditTable'
+  withGetProductQuery, 
+  withDeleteProductMutation,
+  withAddProductMutation, 
+  withUpdateProductMutation,
+} from '../../graphql/product'
+import EditTable from './EditTable'
 
-const CategoryList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
+const ProductList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
   <EditTable
     columns={[
       {
         title: 'ID',
         dataIndex: '_id',
         defaultSortOrder: 'descend',
-        sorter: (a, b) => a._id - b._id,
+        sorter: (a, b) => a.age - b.age,
         width: 120,
       },
       {
@@ -24,10 +24,18 @@ const CategoryList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
         dataIndex: 'name',
         editable: true,
       },
+      {
+        title: 'Price',
+        dataIndex: 'price',
+        defaultSortOrder: 'descend',
+        sorter: (a, b) => a.price - b.price,
+        width: 150,
+        editable: true,
+      },
     ]}
     defaultAddValues={{
-      name: 'Category Name',
-      products: [],
+      name: 'Iphone XR',
+      price: 29900
     }}
     data={dataList} 
     loading={loading}
@@ -52,17 +60,17 @@ const CategoryList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
 );
 
 export default withSchema(
-  'categories',
+  'products',
   [
-    withGetCategoryQuery({
+    withGetProductQuery({
       options: () => ({
         notifyOnNetworkStatusChange: true,
         fetchPolicy: 'cache-and-network',
       })
     }),
-    withAddCategoryMutation({ name: 'addSchema', options: { refetchQueries: ['GetCategories'] } }),
-    withUpdateCategoryMutation({ name: 'updateSchema', options: { refetchQueries: ['GetCategories'] } }),
-    withDeleteCategoryMutation({ name: 'deleteSchema', options: { refetchQueries: ['GetCategories'] } }),
+    withAddProductMutation({ name: 'addSchema', options: { refetchQueries: ['GetProducts'] } }),
+    withUpdateProductMutation({ name: 'updateSchema', options: { refetchQueries: ['GetProducts'] } }),
+    withDeleteProductMutation({ name: 'deleteSchema', options: { refetchQueries: ['GetProducts'] } }),
   ],
-  CategoryList
+  ProductList
 )
