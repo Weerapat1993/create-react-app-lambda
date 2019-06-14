@@ -74,8 +74,8 @@ class EditableTable extends React.Component {
       if (error) {
         return;
       }
-      const products = [...this.props.data];
-      const rowField = products.find(item => key === item.key);
+      const lists = [...this.props.data];
+      const rowField = lists.find(item => key === item.key);
       const newData = {
         ...rowField,
         ...row,

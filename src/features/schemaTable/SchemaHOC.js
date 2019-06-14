@@ -27,7 +27,7 @@ export const withSchema = (queryName, withGraphqlCRUD, WrapperComponent) => {
       updateSchema({
         variables: {
           input: {
-            id: row._id,
+            _id: row._id,
             ...input,
           }
         },
