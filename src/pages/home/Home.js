@@ -15,6 +15,7 @@ const Home = (props) => {
         <ul>
           <li><Link to='/products'>Categories</Link></li>
           <li><Link to='/products'>Product</Link></li>
+          <li><Link to='/users'>Users</Link></li>
         </ul>
       </Card.Body>
     </Card>

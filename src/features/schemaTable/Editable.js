@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Input, InputNumber, Form, Select } from 'antd';
 import { get } from 'lodash'
 
@@ -17,19 +17,22 @@ export const EditableFormRow = Form.create()(EditableRow);
 export class EditableCell extends React.Component {
   getInput = () => {
     const lists = get(this.props, 'lists', [])
-    if (this.props.inputType === 'number') {
-      return <InputNumber />;
+    switch(this.props.inputType) {
+      case 'number':
+        return <InputNumber />;
+      case 'select-multiple':
+        return (
+          <Select mode="multiple" style={{ width: '100%' }}>
+            {lists.map(item => (
+              <Option key={item.value}>{item.title}</Option>
+            ))}
+          </Select>
+        );
+      case 'none':
+        return <Fragment />;
+      default:
+        return <Input />;
     }
-    if (this.props.inputType === 'select-multiple') {
-      return (
-        <Select mode="multiple" style={{ width: '100%' }}>
-          {lists.map(item => (
-            <Option key={item.value}>{item.title}</Option>
-          ))}
-        </Select>
-      );
-    }
-    return <Input />;
   };
 
   renderCell = ({ getFieldDecorator }) => {

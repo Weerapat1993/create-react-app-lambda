@@ -1,6 +1,6 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import { Table } from 'antd'
+import { Table, Tag } from 'antd'
 import { get, omit } from 'lodash'
 import { withSchema } from '../../features/schemaTable';
 import {
@@ -40,7 +40,17 @@ const CategoryList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
               dataIndex: 'productIds',
               inputType: 'select-multiple',
               editable: true,
-              lists,
+              render: (productId, row) => (
+                <span>
+                  {row.products.map(product => {
+                    return (
+                      <Tag color="green" key={product._id}>
+                        {product.name.toUpperCase()}
+                      </Tag>
+                    );
+                  })}
+                </span>
+              ),
             },
           ]}
           defaultAddValues={{
@@ -50,7 +60,7 @@ const CategoryList = ({ dataList, loading, onAdd, onUpdate, onDelete }) => (
           }}
           data={dataList} 
           loading={loading}
-          onAdd={onAdd}
+          onAdd={(input) => onAdd(omit(input, ['products']))}
           onUpdate={(row) => onUpdate(omit(row, ['products']))}
           onDelete={onDelete}
           lists={lists}
