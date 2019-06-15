@@ -91,7 +91,12 @@ class App extends PureComponent {
           <Content style={{ margin: '24px 16px 0' }}>
             <Routes />
           </Content>
-          <Playground visible={isPlayground} isMobile={isMobile} onClose={this.handlePlayground} />
+          <Playground
+            url={process.env.REACT_APP_GRAPHQL_PLAYGROUND_URL}
+            visible={isPlayground} 
+            isMobile={isMobile} 
+            onClose={this.handlePlayground} 
+          />
         </Layout>
       </Layout>
     );

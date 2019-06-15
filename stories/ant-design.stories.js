@@ -1,8 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { withKnobs, select } from '@storybook/addon-knobs';
 import { Button } from 'antd';
 import { Background } from '../src/components/Background';
+import figmaDecorator from 'storybook-addon-figma'
 
 // Options
 const typeOptions = {
@@ -17,6 +18,9 @@ const stories = storiesOf('Ant Design|Button', module);
   // Addons
   stories
     .addDecorator(withKnobs)
+    .addDecorator(figmaDecorator({
+      url: 'https://www.figma.com/file/LbcvMJxDtshDmYtdyfJfkA72/Button-Primary'
+    }))
     .addParameters({
       backgrounds: [
         { name: 'White', value: '#fff' },

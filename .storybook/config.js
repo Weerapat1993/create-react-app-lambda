@@ -9,9 +9,15 @@ import { theme } from '../src/config/theme';
 
 // Option defaults.
 addParameters({
-  options: {
-    theme: themes.dark,
-  },
+  // options: {
+  //   theme: themes.dark,
+  // },
+  darkMode: {
+    // Override the default dark theme
+    dark: { ...themes.dark, appBg: '#333' },
+    // Override the default light theme
+    light: { ...themes.normal, appBg: '#fff' }
+  }
 });
 
 

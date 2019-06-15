@@ -17,7 +17,6 @@ import { inititalState } from './graphql/store';
 import { resolvers } from './graphql/resolvers'
 import * as serviceWorker from './serviceWorker';
 import { GlobalStyle } from './styles/GlobalStyle';
-require('dotenv').config()
 
 const cache = new InMemoryCache();
 const stateLink = withClientState({

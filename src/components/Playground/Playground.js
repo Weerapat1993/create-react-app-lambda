@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components'
 import { Button } from 'antd';
-require('dotenv').config()
 
 const PlaygroundView = styled.div`
   position: absolute;
@@ -33,21 +32,24 @@ class Playground extends PureComponent {
   }
 
   render() {
-    const { visible, onClose, isMobile } = this.props;
+    const { visible, onClose, isMobile, url, noButton } = this.props;
     const { random } = this.state;
     return (
       <PlaygroundView isMobile={isMobile} visible={visible}>
-        <CloseView>
-          {visible ? (
-            <Button type="primary" shape="circle" icon='redo' disabled={!visible} onClick={this.resetIframe} />
-          ) : null}
-          &nbsp;
-          <Button type="primary" shape="circle" icon={visible ? 'close' : 'radar-chart'} onClick={() => onClose(!visible)} />
-        </CloseView>
+        {!noButton ? (
+          <CloseView>
+            {visible ? (
+              <Button type="primary" shape="circle" icon='redo' disabled={!visible} onClick={this.resetIframe} />
+            ) : null}
+            &nbsp;
+            <Button type="primary" shape="circle" icon={visible ? 'close' : 'radar-chart'} onClick={() => onClose(!visible)} />
+          </CloseView>
+        ) : null}
+       
         <iframe
           key={random}
           title="GraphQL Playground"
-          src={process.env.REACT_APP_GRAPHQL_PLAYGROUND_URL}
+          src={url}
           width="100%"
           height="100%"
           frameBorder={0}
