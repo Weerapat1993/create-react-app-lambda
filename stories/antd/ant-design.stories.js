@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, select } from '@storybook/addon-knobs';
+import { withKnobs, select, text } from '@storybook/addon-knobs';
 import { Button } from 'antd';
-import { Background } from '../src/components/Background';
+import { Background } from '../../src/components/Background';
 import figmaDecorator from 'storybook-addon-figma'
 
 // Options
@@ -30,6 +30,8 @@ const stories = storiesOf('Ant Design|Button', module);
   stories
     .add('example', () => (
       <Background padding="10px">
-        <Button type={select('Type', typeOptions, 'primary')}>Button</Button>
+        <Button type={select('Type', typeOptions, 'primary')}>
+          {text('Message', 'Button')}
+        </Button>
       </Background>
     ));

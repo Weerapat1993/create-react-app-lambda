@@ -10,6 +10,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from '../src/config/theme';
 import { ApolloProvider } from 'react-apollo';
 import { client } from '../src'
+import 'antd/dist/antd.less'
 import './test'
 
 // Enzyme Config
@@ -17,9 +18,11 @@ enzymeConfigure({ adapter: new Adapter() });
 
 // Option defaults.
 addParameters({
-  // options: {
-  //   theme: themes.dark,
-  // },
+  options: {
+    showNav: true,
+    showPanel: true,
+    panelPosition: 'bottom'
+  },
   darkMode: {
     // Override the default dark theme
     dark: { ...themes.dark, appBg: '#333' },
@@ -55,7 +58,6 @@ configure(loadStories, module);
 
 setOptions({
   name: 'STORYBOOK',
-  addonPanelInRight: true,
   sidebarAnimations: true,
   hierarchySeparator: /\//,
   hierarchyRootSeparator: /\|/,

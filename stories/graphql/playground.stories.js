@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import md from './datepicker.md';
-import { Playground } from '../src/components/Playground';
+import { Playground } from '../../src/components/Playground';
 
 const stories = storiesOf('GraphQL|GraphQL Playground', module);
   // Addons
@@ -23,6 +22,4 @@ const stories = storiesOf('GraphQL|GraphQL Playground', module);
         noButton
         onClose={() => null} 
       />
-    ), { 
-      notes: { markdown: md },
-    });
+    ));

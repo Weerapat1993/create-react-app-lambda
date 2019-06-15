@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
-import { DatePicker } from '../src/components/DatePicker';
-import { Background } from '../src/components/Background';
+import { DatePicker } from '../../src/components/DatePicker';
+import { Background } from '../../src/components/Background';
 import md from './datepicker.md';
 
 const stories = storiesOf('Components|DatePicker', module);

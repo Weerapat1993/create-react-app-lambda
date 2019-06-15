@@ -15,21 +15,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      // {
-      //   loader: 'babel-loader',
-      //   exclude: /node_modules/,
-      //   test: /\.(js|jsx)$/,
-      //   options: {
-      //     presets: ["@babel/react"],
-      //     plugins: [
-      //       ['import', {
-      //         libraryName: "antd",
-      //         libraryDirectory: 'es',
-      //         style: true
-      //       }]
-      //     ]
-      //   },
-      // },
       {
         test: /\.less$/,
         loaders: [
