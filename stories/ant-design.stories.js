@@ -1,10 +1,19 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs } from '@storybook/addon-knobs';
-import { DatePicker } from '../src/components/DatePicker';
+import { withKnobs, text, select } from '@storybook/addon-knobs';
+import { Button } from 'antd';
 import { Background } from '../src/components/Background';
 
-const stories = storiesOf('Components|DatePicker', module);
+// Options
+const typeOptions = {
+  Default: '',
+  Primary: 'primary',
+  Dashed: 'dashed',
+  Danger: 'danger',
+  Link: 'link',
+};
+
+const stories = storiesOf('Ant Design|Button', module);
   // Addons
   stories
     .addDecorator(withKnobs)
@@ -17,6 +26,6 @@ const stories = storiesOf('Components|DatePicker', module);
   stories
     .add('example', () => (
       <Background padding="10px">
-        <DatePicker />
+        <Button type={select('Type', typeOptions, 'primary')}>Button</Button>
       </Background>
     ));

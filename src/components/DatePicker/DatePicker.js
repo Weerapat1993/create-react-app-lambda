@@ -9,11 +9,15 @@ const DateInput = styled.div`
 `
 
 class DatePicker extends PureComponent {
-  state = {
-    visible: false
+  constructor() {
+    super()
+
+    this.state = {
+      visible: false
+    }
   }
 
-  handleActionSheet = (visible) => {
+  handleActionSheet(visible) {
     this.setState({ visible })
   }
   

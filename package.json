@@ -52,6 +52,7 @@
   "devDependencies": {
     "@babel/plugin-transform-object-assign": "^7.0.0",
     "@storybook/addon-actions": "^5.1.8",
+    "@storybook/addon-backgrounds": "^5.1.8",
     "@storybook/addon-info": "^5.1.8",
     "@storybook/addon-knobs": "^5.1.8",
     "@storybook/addon-links": "^5.1.8",

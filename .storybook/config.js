@@ -1,10 +1,18 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
 import { setOptions } from '@storybook/addon-options'
 import { setDefaults } from '@storybook/addon-info'
+import { themes } from '@storybook/theming';
 import errorBoundaryDecorator from '../config/addons/error-boundary-addon/decorator';
 import { ThemeProvider } from 'styled-components';
 import { theme } from '../src/config/theme';
+
+// Option defaults.
+addParameters({
+  options: {
+    theme: themes.dark,
+  },
+});
 
 
 addDecorator(errorBoundaryDecorator); // Should be one of the decorator you add
@@ -30,7 +38,7 @@ addDecorator((story) => (
 configure(loadStories, module);
 
 setOptions({
-  name: 'Core UI',
+  name: 'STORYBOOK',
   addonPanelInRight: true,
   sidebarAnimations: true,
   hierarchySeparator: /\//,
