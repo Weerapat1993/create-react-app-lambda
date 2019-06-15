@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withKnobs } from '@storybook/addon-knobs';
 import { DatePicker } from '../src/components/DatePicker';
 import { Background } from '../src/components/Background';
+import md from './datepicker.md';
 
 const stories = storiesOf('Components|DatePicker', module);
   // Addons
@@ -19,4 +20,6 @@ const stories = storiesOf('Components|DatePicker', module);
       <Background padding="10px">
         <DatePicker />
       </Background>
-    ));
+    ), { 
+      notes: { markdown: md },
+    });
