@@ -19,9 +19,8 @@ enzymeConfigure({ adapter: new Adapter() });
 // Option defaults.
 addParameters({
   options: {
-    showNav: true,
-    showPanel: true,
-    panelPosition: 'bottom'
+    panelPosition: 'bottom',
+    url: '#',
   },
   darkMode: {
     // Override the default dark theme
