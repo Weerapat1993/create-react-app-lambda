@@ -13,6 +13,7 @@ const Routes = () => (
     <Route path="/products" component={Page.Products} />
     <Route path="/users" component={Page.Users} />
     <Route path="/categories" component={Page.Categories} />
+    <Route path="/schema" component={Page.Schema} />
     <Route path="/products-example" component={Page.Example} />
     <Route path='*' component={ErrorPage} />
   </Switch>

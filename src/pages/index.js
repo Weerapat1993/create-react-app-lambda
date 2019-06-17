@@ -6,6 +6,7 @@ import Products from './products'
 import Categories from './categories'
 import Users from './users'
 import Example from '../features/schemaTable';
+import Schema from './schema'
 
 export default { 
   Home,
@@ -16,4 +17,5 @@ export default {
   Categories,
   Users,
   Example,
+  Schema,
 }

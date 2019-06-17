@@ -39,6 +39,11 @@ class App extends PureComponent {
     // const noFooters = ['/playground']
     const menus = [
       {
+        title: 'Schema',
+        icon: 'database',
+        to: '/schema'
+      },
+      {
         title: 'About',
         icon: 'user',
         to: '/about'
