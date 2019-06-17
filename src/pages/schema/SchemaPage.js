@@ -8,8 +8,8 @@ class SchemaPage extends PureComponent {
     console.log(GET_USER_BY_ID)
     return (
       <div>
-        <h1>Schema</h1>
         <Schema schema={GET_USER} />
+        <br/>
         <Schema schema={GET_USER_BY_ID} />
       </div>
     )
