@@ -1,6 +1,7 @@
 {
-  "short_name": "Kunai Developer",
   "name": "Top Developer Website",
+  "short_name": "Kunai Developer",
+  "description": "Kunai Developer Progressive Web App",
   "icons": [
     {
       "src": "./assets/images/icons/favicon.ico",
@@ -8,10 +9,14 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "/",
+  "start_url": "/?utm_source=launcher",
   "display": "standalone",
   "theme_color": "#29434d",
   "background_color": "#ffffff",
-  "related_applications": true,
+  "orientation": "portrait",
+  "related_applications": [{
+    "platform": "web",
+    "url": "https://kunai.netlify.com"
+  }],
   "prefer_related_applications": true
 }
